@@ -1,0 +1,56 @@
+#!/bin/sh
+set -$files							  																														# SPAME TA ARGUMENTS
+if [ "$#" -gt "3" ]||[ "$#" -lt "3" ] 																								# ELEGXOYME ARGUMENTS
+then echo "./ergasia3...No of Arguments Fault"
+else																																									# FTIAXNOYME ARXEIA EXODOY
+	aristoi=$3 out=$2
+	$cat > $out; echo "  AM 		Telikos		" > $out	
+	$cat > $aristoi; echo "     Emails		" > $aristoi	
+fi
+input="$1"
+shift
+{
+read input																																						# 1h GRAMMI EKTOS
+while read -r line; do	i=0 bonus1=0 bonus2=0																					# DIAVAZOYME GRAMMI GRAMMI TO INPUT FILE
+  for word in $line; do																																# DIAVAZOYME LEXI LEXI THN GRAMMI
+  		case $i in
+  			0)AMH=$word; AM=`expr substr $word 1 4`; 																			# AM=${word:0:4};
+					if [ "$AM" -ge 2019 ]; then Email="${word}@ds.uop.gr"	
+					else Email="${word}@cs.teikal.gr" ; bonus1=50; fi ;;												# echo $Email ;;
+  			1)counter=${#word}  s=0
+  			while [ $word -gt 0 ]; do
+	    		k=$(( $word % 10 ))
+	   		 	word=$(( $word / 10 ))
+	    		s=$(( $s + $k ))																														# PAROUSIES
+				done
+				Apousies=`expr $counter - $s`																									# APOYSIES
+				if [ "$counter" -le 10 ]||[ "$counter" -gt 10 ]&&[ "$Apousies" -eq 0 ];				# BONUS
+					then pass=2 bonus2=50
+				elif [ "$counter" -le 10 ]&&[ "$Apousies" -le 2 ]; then pass=1								# ERGASTHRIA <= 10
+				elif [ "$counter" -gt 10 ]&&[ "$Apousies" -le 3 ]; then pass=1								# ERGASTHRIA >10	
+				else pass=0																																		# KOPHKE
+  			fi ;;
+  			2)P1=`expr $word \* 10` ;;
+  			3)P2=`expr $word \* 10` ;;
+  			4)P3=`expr $word \* 10`																												# ELEGXOS PROJECTS KRATAME 2 MEGALYTERA
+				if [ $P1 -le $P2 ]&&[ $P1 -lt $P3 ]; then P1=0
+				elif [ $P2 -lt $P1 ]&&[ $P2 -le $P3 ] ; then P2=0
+				else P3="0" ; 
+  			fi; POLIKO=`expr $P1 + $P2 + $P3`; POLIKO=`expr $POLIKO / 2`; 								# YPOLOGISMOS POSOSTO PROJECTS
+  					POLIKO=`expr $POLIKO \* 4`; ;; #echo $POLIKO ;;
+  			5)T1=`expr $word \* 10` ; ;;
+  			6)T2=`expr $word \* 10` ; 
+					TOLIKO=`expr $T1 + $T2`; TOLIKO=`expr $TOLIKO / 2`; 												# YPOLOGISMOS POSOSTO THEMATA
+					TOLIKO=`expr $TOLIKO \* 6`; ;; #echo $TOLIKO ;;
+  		esac
+		i=`expr $i + 1`
+  done
+  Vathmos=`expr $POLIKO + $TOLIKO`;Telikos=$Vathmos ; 																# echo $Telikos;
+  Vathmos=`expr $Vathmos + 50`; Vathmos=`expr $Vathmos / 100`;												# echo $Vathmos;
+  Vasi=500 ; Vasi=`expr $Vasi - $bonus1 - $bonus2`; 																	# echo $Vasi ;
+  if [ "$Telikos" -lt $Vasi ]||[ "$pass" -eq 0 ];then echo "$AMH		   -		">>$out 	# KOMENOI
+  else echo "$AMH		   $Vathmos	" >> $out																							# PERASAN
+  	if [ "$Telikos" -ge 850 ]; then echo "$Email" >> $aristoi; fi											# ARISTOYXOI
+  fi
+done
+} < "$input"
